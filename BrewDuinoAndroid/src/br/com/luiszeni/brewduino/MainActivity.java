@@ -26,6 +26,7 @@ import com.example.brewduinoandroid.R;
 
 public class MainActivity extends Activity implements OnClickListener {
 	private Cervejaria cervejaria;
+	private Cervejaria cervejariaUltimaLeitura;
 	private DAOCervejaria dao;
 
 	private TextView tvTempMost;
@@ -60,7 +61,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		cervejaria = new Cervejaria(false, false, false, false, false, 0.0,
 				0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-
+		cervejariaUltimaLeitura= new Cervejaria(true, true, true, true, true, 1.0,
+				1.0, 01.0, 01.0, 01.0, 01.0, 01.0);
 		setContentView(R.layout.activity_main);
 		sdf = new SimpleDateFormat("HH:mm:ss");
 		tvTempMost = (TextView) findViewById(R.id.tvTempMost);
@@ -137,6 +139,8 @@ public class MainActivity extends Activity implements OnClickListener {
 				if (leituraCervejaria != null) {
 					cervejaria = leituraCervejaria;
 					readNotSettedParammeters();
+					cervejariaUltimaLeitura = cervejaria;
+					
 				} else {
 					statusMessage("Sem Rede: Modulo Arduino",false);	
 				}
@@ -177,23 +181,32 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		cbRelayCald.setChecked(cervejaria.isRelayCald());
 		cbRelayLav.setChecked(cervejaria.isRelayLav());
-	}
+		
+		
+		
+		if(cervejariaUltimaLeitura.getSettedMostTemp() != cervejaria.getSettedMostTemp()){
+			etSettedMostTemp.setText(cervejaria.getSettedMostTemp() + "");
+		}
+		
+		if(cervejariaUltimaLeitura.getTempThresholdMost() != cervejaria.getTempThresholdMost()){
+			etTempThresoldMost.setText(cervejaria.getTempThresholdMost() + "");
+		}
+		
+		if(cervejariaUltimaLeitura.getSettedLavTemp() != cervejaria.getSettedLavTemp()){
+			etSettedLavTemp.setText(cervejaria.getSettedLavTemp() + "");
+		}
+		
+		if(cervejariaUltimaLeitura.getTempThresholdLav() != cervejaria.getTempThresholdLav()){
+			etTempThresoldLav.setText(cervejaria.getTempThresholdLav() + "");
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-
-		readNotSettedParammeters();
-
-		etSettedMostTemp.setText(cervejaria.getSettedMostTemp() + "");
-		etTempThresoldMost.setText(cervejaria.getTempThresholdMost() + "");
-		etSettedLavTemp.setText(cervejaria.getSettedLavTemp() + "");
-		etTempThresoldLav.setText(cervejaria.getTempThresholdLav() + "");
-
+		}
+		
+		
+		
 		tbRelayCaldON.setChecked(cervejaria.isRelayCaldON());
 		tbRelayLavON.setChecked(cervejaria.isRelayLavON());
 		tbRelayBombON.setChecked(cervejaria.isRelayBombON());
-
+		
 	}
 
 	private void enableALL(boolean enabled){

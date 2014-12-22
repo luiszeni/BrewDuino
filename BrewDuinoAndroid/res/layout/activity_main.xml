@@ -6,235 +6,255 @@
     android:orientation="vertical"
     tools:context="br.com.luiszeni.brewduino.MainActivity" >
 
-    <TextView
-        android:id="@+id/tvMosturacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mosturação"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin" >
+        android:layout_height="wrap_content" >
 
-        <ToggleButton
-            android:id="@+id/tbRelayCaldON"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ToggleButton" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-        <CheckBox
-            android:id="@+id/cbRelayCald"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="Resistência Ligada" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tvMosturacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mosturação"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView
-        android:id="@+id/tvTempMost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:text="Temp Mosturação: 35.25°C" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin" >
 
-    <TextView
-        android:id="@+id/tvTempCald"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:text="Temp Caldeira: 85.25°C" />
+                <ToggleButton
+                    android:id="@+id/tbRelayCaldON"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ToggleButton" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin" >
+                <CheckBox
+                    android:id="@+id/cbRelayCald"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="Resistência Ligada" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvTempDesejadaMost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Temp: " />
+            <TextView
+                android:id="@+id/tvTempMost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:text="Temp Mosturação: 35.25°C" />
 
-        <EditText
-            android:id="@+id/etSettedMostTemp"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal" >
-        </EditText>
+            <TextView
+                android:id="@+id/tvTempCald"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:text="Temp Caldeira: 85.25°C" />
 
-        <TextView
-            android:id="@+id/tvCelciousTempDesejadaMost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="°C" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin" >
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="    " />
+                <TextView
+                    android:id="@+id/tvTempDesejadaMost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Temp: " />
 
-        <TextView
-            android:id="@+id/tvLimiarLigaDeslMost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Limiar: " />
+                <EditText
+                    android:id="@+id/etSettedMostTemp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="numberDecimal" >
 
-        <EditText
-            android:id="@+id/etTempThresoldMost"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal" />
+                    <requestFocus />
+                </EditText>
 
-        <TextView
-            android:id="@+id/tvCelciousTempThrsholdMost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="°C" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tvCelciousTempDesejadaMost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="°C" />
 
-    <TextView
-        android:id="@+id/tvLavagem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lavagem"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="    " />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin" >
+                <TextView
+                    android:id="@+id/tvLimiarLigaDeslMost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Limiar: " />
 
-        <ToggleButton
-            android:id="@+id/tbRelayLavON"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ToggleButton" />
+                <EditText
+                    android:id="@+id/etTempThresoldMost"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="numberDecimal" />
 
-        <CheckBox
-            android:id="@+id/cbRelayLav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="Resistência Ligada" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tvCelciousTempThrsholdMost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="°C" />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvTempLav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:text="Temp Lavagem: 35.25°C" />
+            <TextView
+                android:id="@+id/tvLavagem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lavagem"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin" >
 
-        <TextView
-            android:id="@+id/tvTempDesejadaLav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Temp: " />
+                <ToggleButton
+                    android:id="@+id/tbRelayLavON"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ToggleButton" />
 
-        <EditText
-            android:id="@+id/etSettedLavTemp"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal" >
-        </EditText>
+                <CheckBox
+                    android:id="@+id/cbRelayLav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="Resistência Ligada" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvCelciousTempDesejadaLav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="°C" />
+            <TextView
+                android:id="@+id/tvTempLav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:text="Temp Lavagem: 35.25°C" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="    " />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin" >
 
-        <TextView
-            android:id="@+id/tvLimiarLigaDeslLav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Limiar: " />
+                <TextView
+                    android:id="@+id/tvTempDesejadaLav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Temp: " />
 
-        <EditText
-            android:id="@+id/etTempThresoldLav"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal" />
+                <EditText
+                    android:id="@+id/etSettedLavTemp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="numberDecimal" />
 
-        <TextView
-            android:id="@+id/tvCelciousTempThrsholdLav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="°C" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tvCelciousTempDesejadaLav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="°C" />
 
-    <TextView
-        android:id="@+id/tvBomba"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bomba"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="    " />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin" >
+                <TextView
+                    android:id="@+id/tvLimiarLigaDeslLav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Limiar: " />
 
-        <ToggleButton
-            android:id="@+id/tbRelayBombON"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ToggleButton" />
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/etTempThresoldLav"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="numberDecimal" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.39"
-        android:gravity="bottom|right"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin" >
+                <TextView
+                    android:id="@+id/tvCelciousTempThrsholdLav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="°C" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvUltimaLeitura"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Ultima leitura: 20seg" />
+            <TextView
+                android:id="@+id/tvBomba"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bomba"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <Button
-            android:id="@+id/btEnviar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enviar" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin" >
 
-        <Button
-            android:id="@+id/brLerDados"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ler" />
-    </LinearLayout>
+                <ToggleButton
+                    android:id="@+id/tbRelayBombON"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ToggleButton" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.39"
+                android:gravity="bottom|right"
+                android:paddingBottom="@dimen/activity_horizontal_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin" >
+
+                <TextView
+                    android:id="@+id/tvUltimaLeitura"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ultima leitura: 20seg" />
+
+                <Button
+                    android:id="@+id/btEnviar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Enviar" />
+
+                <Button
+                    android:id="@+id/brLerDados"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ler" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
