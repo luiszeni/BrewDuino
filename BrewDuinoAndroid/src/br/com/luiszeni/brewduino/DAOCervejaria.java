@@ -16,54 +16,33 @@ public class DAOCervejaria {
 		this.ip = ip;
 	}
 
-	public Cervejaria lerDados() throws ExecutionException{
-		try {
+	public Cervejaria lerDados() throws ExecutionException, InterruptedException{
 			return new SendData().execute("http://" + ip + "/").get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 	
 	
-	public Cervejaria setRelayBombON(boolean status) throws ExecutionException{
-		try {
+	public Cervejaria setRelayBombON(boolean status) throws ExecutionException, InterruptedException{
+
 			int value = status ? 1:0 ;
 			return new SendData().execute("http://" + ip + "/?relayBombON="+value).get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} 
-		return null;
 	}
 	
-	public Cervejaria setRelayLavON(boolean status) throws ExecutionException{
-		try {
+	public Cervejaria setRelayLavON(boolean status) throws ExecutionException, InterruptedException{
 			int value = status ? 1:0 ;
 			return new SendData().execute("http://" + ip + "/?relayLavON="+value).get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} 
-		return null;
+
 	}
 	
-	public Cervejaria setRelayCaldON(boolean status) throws ExecutionException{
-		try {
+	public Cervejaria setRelayCaldON(boolean status) throws ExecutionException, InterruptedException{
 			int value = status ? 1:0 ;
 			return new SendData().execute("http://" + ip + "/?relayCaldON="+value).get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} 
-		return null;
+
 	}
 	
-	public Cervejaria sendTemps(double settedMostTemp, double tempThresoldMost,  double settedLavTemp,  double tempThresoldLav) throws ExecutionException{
-		try {
+	public Cervejaria sendTemps(double settedMostTemp, double tempThresoldMost,  double settedLavTemp,  double tempThresoldLav) throws ExecutionException, InterruptedException{
 			DecimalFormat df = new DecimalFormat("00.00");
 			return new SendData().execute("http://" + ip + "/?settedMostTemp="+df.format(settedMostTemp) + "&tempThresholdMost="+df.format(tempThresoldMost) + "&settedLavTemp="+df.format(settedLavTemp)  + "&tempThresholdLav="+df.format(tempThresoldLav) ).get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		return null;
+
 	}
 	
 }
