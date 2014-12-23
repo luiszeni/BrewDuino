@@ -39,12 +39,24 @@ public class DAOCervejaria {
 
 	}
 	
-	public Cervejaria sendTemps(double settedMostTemp, double tempThresoldMost,  double settedLavTemp,  double tempThresoldLav) throws ExecutionException, InterruptedException{
+	public Cervejaria sendMostTemp(double settedMostTemp) throws ExecutionException, InterruptedException{
 			DecimalFormat df = new DecimalFormat("00.00");
-			new SendData().execute("http://" + ip + "/?tempThresholdMost="+df.format(tempThresoldMost) ).get();
-			new SendData().execute("http://" + ip + "/?settedLavTemp="+df.format(settedLavTemp) ).get();
-			new SendData().execute("http://" + ip + "/?tempThresholdLav="+df.format(tempThresoldLav)).get();
 			return new SendData().execute("http://" + ip + "/?settedMostTemp="+df.format(settedMostTemp)).get();
 	}
+	
+	public Cervejaria sendMostTh(double tempThresoldMost) throws ExecutionException, InterruptedException{
+		DecimalFormat df = new DecimalFormat("00.00");
+		 return new SendData().execute("http://" + ip + "/?tempThresholdMost="+df.format(tempThresoldMost) ).get();
+}
+	
+	public Cervejaria sendLavTemp(double settedLavTemp) throws ExecutionException, InterruptedException{
+		DecimalFormat df = new DecimalFormat("00.00");
+		return new SendData().execute("http://" + ip + "/?settedLavTemp="+df.format(settedLavTemp) ).get();
+}
+	
+	public Cervejaria sendLavTh(double tempThresoldLav) throws ExecutionException, InterruptedException{
+		DecimalFormat df = new DecimalFormat("00.00");
+		return new SendData().execute("http://" + ip + "/?tempThresholdLav="+df.format(tempThresoldLav)).get();
+}
 	
 }

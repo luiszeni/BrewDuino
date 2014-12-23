@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:text="Temp: " />
 
-                <EditText
+               <EditText
                     android:id="@+id/etSettedMostTemp"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -79,7 +79,6 @@
                     android:ems="10"
                     android:inputType="numberDecimal" >
 
-                    <requestFocus />
                 </EditText>
 
                 <TextView

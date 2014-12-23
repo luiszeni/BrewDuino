@@ -104,7 +104,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			public void run() {
 				UpdateGUI();
 			}
-		}, 0, 5000);
+		}, 0, 3000);//TODO colocar isso comoparâmetro
 
 	}
 
@@ -240,13 +240,29 @@ public class MainActivity extends Activity implements OnClickListener {
 						.getText().toString());
 				double tempThresoldMost = Double.parseDouble(etTempThresoldMost
 						.getText().toString());
-				double dettedLavTemp = Double.parseDouble(etSettedLavTemp
+				double settedLavTemp = Double.parseDouble(etSettedLavTemp
 						.getText().toString());
 				double tempThresoldLav = Double.parseDouble(etTempThresoldLav
 						.getText().toString());
 
-				dao.sendTemps(settedMostTemp, tempThresoldMost, dettedLavTemp,
-						tempThresoldLav);
+				if(settedMostTemp != cervejaria.getSettedMostTemp()){
+					dao.sendMostTemp(settedMostTemp);
+				}
+				
+				if(tempThresoldMost != cervejaria.getTempThresholdMost()){
+					dao.sendMostTh(tempThresoldMost);
+				}
+				
+				if(settedLavTemp != cervejaria.getSettedLavTemp()){
+					dao.sendLavTemp(settedLavTemp);
+				}
+				
+				if(tempThresoldLav != cervejaria.getTempThresholdLav()){
+					dao.sendLavTh(tempThresoldLav);
+				}
+				
+				
+				
 
 			} else if (R.id.tbRelayBombON == v.getId()) {
 				dao.setRelayBombON(tbRelayBombON.isChecked());
