@@ -24,6 +24,7 @@ int REL_BOMBA_PIN = 5;
 
 boolean relayLav = 0;
 boolean relayCald = 0;
+boolean relayBomb = 0;
 
 boolean relayLavON = 0;
 boolean relayBombON = 0;
@@ -36,7 +37,7 @@ float tempLav = 0;
 float tempThresholdMost = 0.5;
 float tempThresholdLav = 0.5;
 
-float settedMostTemp = 0;
+float settedMostTemp = 29;
 float settedLavTemp = 0;
 
 void setup()
@@ -105,14 +106,77 @@ void readTemps(){
 }
 
 void processTemps(){
-  if(relayCaldON){
-    if((tempMost + tempThresholdMost) < settedMostTemp){
-          relayCald = 1;
-    }else{
-          relayCald = 0;  
+  
+  if(tempMost != -1000.00){
+  
+    if(relayCaldON){
+      
+      if(relayCald == 1 && tempMost >  (settedMostTemp + tempThresholdMost)){
+           
+           digitalWrite(REL_CALD_PIN, LOW);
+            relayCald = 0;
+            Serial.print("Relay Cald OFF");           
+         
+      }else if(relayCald == 0 && tempMost < (settedMostTemp - tempThresholdMost)){
+           digitalWrite(REL_CALD_PIN, HIGH);
+            relayCald = 1;
+            Serial.print("Relay Cald ON  "); 
+           
+      }
+    }else if(relayCald == 1){
+           digitalWrite(REL_CALD_PIN, LOW);
+            relayCald = 0;
+            Serial.println("Relay Cald OFF"); 
+    }
+  }
+  
+  if(tempLav != -1000.00){
+  
+    if(relayLavON){
+      
+      if(relayLav == 1 && tempLav >  (settedLavTemp + tempThresholdLav)){
+           
+           digitalWrite(REL_LAV_PIN, LOW);
+            relayLav = 0;
+            Serial.print("Relay Lav OFF");           
+         
+      }else if(relayLav == 0 && tempLav < (settedLavTemp - tempThresholdLav)){
+           digitalWrite(REL_LAV_PIN, HIGH);
+            relayLav = 1;
+            Serial.print("Relay Lav ON  "); 
+           
+      }
+    }else if(relayLav == 1){
+           digitalWrite(REL_LAV_PIN, LOW);
+            relayLav = 0;
+            Serial.println("Relay Lav OFF"); 
+    }
+  }
+  
+  
+  if(relayBombON){
+         
+       if(relayBomb == 0){
+         digitalWrite(REL_BOMBA_PIN, HIGH);
+          relayBomb = 1;
+          Serial.println("Relay bomb ON"); 
     }
   }else{
-    relayCald = 0;
+     if(relayBomb == 1){
+         digitalWrite(REL_BOMBA_PIN, LOW);
+          relayBomb = 0;
+          Serial.println("Relay bomb OFF"); 
+       }
+  }
+  
+  
+  /*
+  if(relayCald){
+    digitalWrite(REL_CALD_PIN, HIGH);
+    
+  }else{
+   
+    Serial.println("Relay Cald OFF");
   }
  
   if(relayLavON){
@@ -123,25 +187,31 @@ void processTemps(){
     }
   }else{
     relayLav = 0;
-  }
+  } */
 }
 
 void processRelays(){
-  if(relayCald)
+ /* if(relayCald){
     digitalWrite(REL_CALD_PIN, HIGH);
-  else
+    Serial.println("Relay Cald ON");
+  }else{
     digitalWrite(REL_CALD_PIN, LOW);
-   
-   if(relayLav)
+    Serial.println("Relay Cald OFF");
+  } 
+   if(relayLav){
     digitalWrite(REL_LAV_PIN, HIGH);
-  else
+    //Serial.println("Relay lav ON");
+   }else{
     digitalWrite(REL_LAV_PIN, LOW);
- 
-  if(relayBombON)
+    //Serial.println("Relay lav OFF");
+   }
+  if(relayBombON){
     digitalWrite(REL_BOMBA_PIN, HIGH);
-  else
+    //Serial.println("Relay bomba ON");
+  }else{
     digitalWrite(REL_BOMBA_PIN, LOW);    
-
+    //Serial.println("Relay bomba OFF");
+  }*/
 }
 
 
@@ -235,7 +305,7 @@ void ProcessCheckbox(EthernetClient cl)
 //Serial.println(HTTP_req);
 //Serial.print("Teste indexOf:");
 //Serial.println(HTTP_req.indexOf("t1=1")); 
-Serial.println(settedMostTemp);
+//Serial.println(settedMostTemp);
   getValue("settedMostTemp=", &settedMostTemp);
   getValue("settedLavTemp=", &settedLavTemp);
   getValue("tempThresholdMost=", &tempThresholdMost);
@@ -287,16 +357,16 @@ float getTemp(OneWire ds){
 
 
 void getValue(String tag, float * var){
-    Serial.print(tag);
+    //Serial.print(tag);
   if (HTTP_req.indexOf(tag) > -1) { 
-        Serial.print("  Entrou ");
+       // Serial.print("  Entrou ");
         String value = HTTP_req.substring(HTTP_req.indexOf(tag)+ tag.length(),HTTP_req.indexOf(tag)+tag.length()+5);
         char charBuf[6];
         value.toCharArray(charBuf, 6);
         float conv = atof(charBuf); 
-        Serial.print(*var);
+      //  Serial.print(*var);
         *var = conv  ;
-    Serial.println("");
+   // Serial.println("");
   }
 }
 
